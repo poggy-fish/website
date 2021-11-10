@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { Box, Text, Heading } from 'theme-ui';\nexport default function SectionHeader({\n  title,\n  slogan,\n  isWhite\n}) {\n  return __jsx(\"h1\", null, \"SectionHeader\");\n}","map":null,"metadata":{},"sourceType":"module"}
