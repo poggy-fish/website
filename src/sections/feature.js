@@ -25,7 +25,7 @@ const FeatureData = [
   {
     image: featureImage3,
     title:
-      'Convert your web layout theming easily with sketch zeplin extension',
+      'Convert your web layout theming easily with sketch zeplin extension.',
     comments: '12 Comments',
     path: '/',
   },
