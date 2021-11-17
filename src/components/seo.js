@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 
 export default function SEO({
-  description = 'startup product landing page',
-  author = 'JSM',
+  description = 'startup landing descriptions',
+  author = 'RedQ, Inc',
   meta,
   title = 'startup landing title',
 }) {
@@ -41,7 +41,6 @@ export default function SEO({
       content: description,
     },
   ].concat(meta);
-  
   return (
     <Head>
       <title>{title}</title>
@@ -55,4 +54,5 @@ export default function SEO({
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
+  description: ``,
 };

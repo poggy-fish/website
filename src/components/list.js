@@ -3,20 +3,33 @@ import { Flex, Box, IconButton } from 'theme-ui';
 
 export default function List({ items = [], parentStyle, childStyle }) {
   return (
-    <h1>List</h1>
+    <Box
+      as="ul"
+      sx={{
+        listStyleType: 'none',
+        margin: 0,
+        padding: 0,
+        ...parentStyle,
+      }}
+    >
+      {items.map(({ icon, text }, i) => (
+        <Flex as="li" sx={{ ...childStyle }} key={i}>
+          <IconButton
+            sx={{
+              color: '#FFC059',
+              width: 'auto',
+              height: 'auto',
+              padding: 0,
+              fontSize: 30,
+              marginRight: 2,
+            }}
+            aria-label="list icon"
+          >
+            {icon}
+          </IconButton>
+          {text}
+        </Flex>
+      ))}
+    </Box>
   );
 }
-
-const styles = {
-  listIcon: {
-    width: ['25px', '35px'],
-    height: 'auto',
-    color: 'primary',
-    padding: 0,
-    fontSize: [3, 5],
-    ml: '-1px',
-    flexShrink: 0,
-    justifyContent: 'flex-start',
-    mt: '2px',
-  },
-};

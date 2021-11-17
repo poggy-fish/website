@@ -1,68 +1,153 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui';
-import { Container, Grid } from 'theme-ui';
-import SectionHeader from 'components/section-header';
-import FeatureCard from 'components/feature-card.js';
-import Performance from 'assets/feature/performance.svg';
-import Partnership from 'assets/feature/partnership.svg';
-import Subscription from 'assets/feature/subscription.svg';
-import Support from 'assets/feature/support.svg';
+import React, { useRef } from 'react';
+import { Box, Container } from 'theme-ui';
+import BlockTitle from 'components/block-title';
+import Swiper from 'react-id-swiper';
 
-const data = [
+import FeatureCard from 'components/feature-card';
+import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa';
+import featureImage1 from 'assets/tutorial-1-1.png';
+import featureImage2 from 'assets/tutorial-1-2.png';
+import featureImage3 from 'assets/tutorial-1-3.png';
+
+const FeatureData = [
   {
-    id: 1,
-    imgSrc: Performance,
-    altText: 'Fast Performance',
-    title: 'Fast Performance',
-    text:
-      'Let’s just get this out of the way - there will always be a kit version of Edu flow. Paid subscriptions allow us to continue helping learners around the world.',
+    image: featureImage1,
+    title: 'How to work with prototype design with adobe xd featuring tools',
+    comments: '22 Comments',
+    path: '/',
   },
   {
-    id: 2,
-    imgSrc: Partnership,
-    altText: 'Pro Subscription',
-    title: 'Pro Subscription',
-    text:
-      'We believe it’s important for everyone to have access to software – especially when it comes to digital learning be navigated by keyboard and screen readers.',
+    image: featureImage2,
+    title: 'Create multiple artboard by using figma prototyping development',
+    comments: '15 Comments',
+    path: '/',
   },
   {
-    id: 3,
-    imgSrc: Subscription,
-    altText: 'Partnership deal',
-    title: 'Partnership deal',
-    text:
-      'Let’s just get this out of the way - there will always be a kit version of Edu flow. Paid subscriptions allow us to continue helping learners around the world.',
-  },
-  {
-    id: 4,
-    imgSrc: Support,
-    altText: 'Customer Support',
-    title: 'Customer Support',
-    text:
-      'We believe it’s important for everyone to have access to software – especially when it comes to digital learning be navigated by keyboard and screen readers.',
+    image: featureImage3,
+    title:
+      'Convert your web layout theming easily with sketch zeplin extension',
+    comments: '12 Comments',
+    path: '/',
   },
 ];
 
-export default function Feature() {
+const Feature = () => {
+  const ref = useRef(null);
+  const goNext = () => {
+    if (ref.current !== null && ref.current.swiper !== null) {
+      ref.current.swiper.slideNext();
+    }
+  };
+
+  const goPrev = () => {
+    if (ref.current !== null && ref.current.swiper !== null) {
+      ref.current.swiper.slidePrev();
+    }
+  };
+  const params = {
+    slidesPerView: 3,
+    slidesPerGroup: 3,
+    spaceBetween: 30,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+      },
+      376: {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+      },
+      576: {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+      },
+      768: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 30,
+      },
+      992: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 30,
+      },
+      1200: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 30,
+      },
+    },
+  };
   return (
-   <h1>Feature</h1>
+    <Box sx={styles.features} id="news">
+      <Container>
+        <BlockTitle
+          slogan="Quality features"
+          title="Tutorials that people love most"
+          styles={styles.blockTitle}
+        />
+
+        <Swiper {...params} ref={ref}>
+          {FeatureData.map((feature, index) => (
+            <div className="swiper-slider" key={`feature-card-key${index}`}>
+              <FeatureCard
+                image={feature.image}
+                title={feature.title}
+                commentCount={feature.comments}
+                path={feature.path}
+              />
+            </div>
+          ))}
+        </Swiper>
+        <Box sx={styles.carouselBtns}>
+          <button aria-label="left btn" onClick={goPrev}>
+            <FaLongArrowAltLeft />
+          </button>
+          <button onClick={goNext} aria-label="right btn">
+            <FaLongArrowAltRight />
+          </button>
+        </Box>
+      </Container>
+    </Box>
   );
-}
+};
+
+export default Feature;
 
 const styles = {
-  grid: {
-    pt: [0, null, null, null, null, null, 2],
-    px: [5, 6, 0, null, 7, 8, 7],
-    gridGap: [
-      '40px 0',
-      null,
-      '45px 30px',
-      null,
-      '60px 50px',
-      '70px 50px',
-      null,
-      '80px 90px',
-    ],
-    gridTemplateColumns: ['repeat(1,1fr)', null, 'repeat(2,1fr)'],
+  blockTitle: {
+    textAlign: 'center',
+  },
+  features: {
+    pt: ['80px', null, null, null, null, null, '120px'],
+    pb: ['80px', null, null, null, '170px'],
+    backgroundColor: '#F8FAFC',
+    '.swiper-slider': {
+      overflowY: 'visible',
+      overflowX: 'hidden',
+    },
+  },
+  carouselBtns: {
+    display: ['flex', null, null, null, null, 'none'],
+    justifyContent: 'center',
+    alignItems: 'center',
+    button: {
+      border: 'none',
+      outline: 'none',
+      backgroundColor: 'transparent',
+      fontSize: [2, null, 4, null, 5],
+      color: '#BBC7D7',
+      width: 'auto',
+      padding: [0],
+      margin: '0 5px',
+      mt: '15px',
+      transition: '500ms',
+      '&:hover, &:active, &:focus': {
+        color: 'primary',
+      },
+    },
   },
 };

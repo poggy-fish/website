@@ -1,55 +1,68 @@
 /** @jsx jsx */
-import { jsx, Box, Container, Image, Text } from 'theme-ui';
+import { jsx, Box, Text, Container } from 'theme-ui';
 import { Link } from 'components/link';
-import data from './footer.data';
-import FooterLogo from 'assets/logo.svg';
-
+import Logo from 'components/logo';
 export default function Footer() {
   return (
-    <h1>Footer</h1>
+    <footer
+      sx={{
+        variant: 'layout.footer',
+        backgroundColor: '#fff',
+      }}
+    >
+      <Container
+        sx={{
+          variant: 'layout.toolbar',
+          justifyContent: ['center', null, null, 'space-between'],
+          flexDirection: ['column', null, null, null, 'row'],
+          paddingTop: [30, 40],
+          paddingBottom: [30, 65],
+        }}
+      >
+        <Box sx={styles.left}>
+          <Logo />
+          <Text as="p">
+            &copy; {new Date().getFullYear()} All right reserved - Design &
+            Developed by RedQ, Inc
+          </Text>
+        </Box>
+        <Box sx={styles.right}>
+          <Link path="/" label="Home" />
+          <Link path="/" label="Adversite" />
+          <Link path="/" label="Supports" />
+          <Link path="/" label="Marketing" />
+          <Link path="/" label="FAQ" />
+        </Box>
+      </Container>
+    </footer>
   );
 }
 
 const styles = {
-  footer: {
-    footerBottomArea: {
-      borderTop: '1px solid',
-      borderTopColor: 'border_color',
-      display: 'flex',
-      pt: [7, null, 8],
-      pb: ['40px', null, '100px'],
-      textAlign: 'center',
-      flexDirection: 'column',
+  left: {
+    display: 'flex',
+    flexDirection: ['column', null, 'row'],
+    alignItems: 'center',
+    p: {
+      fontSize: [0, 1],
+      color: 'black',
+      opacity: 0.6,
+      mt: ['10px', null, '0'],
     },
-    menus: {
-      mt: [3, 4],
-      mb: 2,
-      nav: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-      },
-    },
-
-    link: {
-      fontSize: [1, '15px'],
-      color: 'text',
-      fontWeight: '400',
-      mb: 2,
-      cursor: 'pointer',
-      transition: 'all 0.35s',
-      display: 'block',
-      textDecoration: 'none',
-      lineHeight: [1.5, null, 1.8],
-      px: [2, null, 4],
-      ':hover': {
+  },
+  right: {
+    display: ['none', null, null, null, 'flex'],
+    fontSize: 2,
+    alignItems: 'center',
+    color: 'black',
+    a: {
+      transition: '500ms',
+      '&:hover': {
         color: 'primary',
       },
     },
-    copyright: {
-      fontSize: [1, '15px'],
-      width: '100%',
+    'a+a': {
+      marginLeft: '30px',
     },
   },
 };

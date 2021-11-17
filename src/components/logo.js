@@ -1,19 +1,17 @@
 /** @jsx jsx */
 import { jsx, Image } from 'theme-ui';
 import { Link } from 'components/link';
+import logo from 'assets/logo.svg';
 
-export default function Logo({ src, ...rest }) {
+export default function Logo() {
   return (
     <Link
       path="/"
       sx={{
-        varient: 'links.logo',
-        display: 'flex',
-        cursor: 'pointer',
-        mr: 15,
+        variant: 'links.logo',
       }}
-    > 
-      <Image src={src} alt="nextjs landing page logo"/>
+    >
+      <Image src={logo} sx={{ display: 'flex' }} alt="startup landing logo" />
     </Link>
   );
 }
